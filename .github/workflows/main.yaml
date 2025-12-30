@@ -87,6 +87,7 @@ jobs:
     name: Telegram Notification
     runs-on: ubuntu-latest
     needs: [build]
+    environment: production
     if: always()
     steps:
       - name: Send Telegram notification
