@@ -8,4 +8,7 @@ services:
       - NEXTAUTH_SECRET=$NEXTAUTH_SECRET
       - DATABASE_URL=$DATABASE_URI
     volumes:
-      - ${UPLOADS:-./uploads}:/app/storage
+      - uploads:/app/storage
+
+volumes:
+  uploads:
