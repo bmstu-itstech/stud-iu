@@ -48,15 +48,15 @@ export default function NewsDetailsPage() {
                 <Text level={4} className="font-bold">Назад</Text>
             </Button>
 
-            <div className="flex flex-col mx-auto w-full max-w-[60dvw]">
-                <Title level={2} className="leading-tight mb-6 !text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl text-gray-900">
+            <div className="flex flex-col mx-auto w-full md:max-w-[60dvw]">
+                <Title level={2} className="leading-tight mb-6 !text-6xl text-gray-900">
                     {news.title}
                 </Title>
 
                 <div className="flex flex-col gap-1 mb-8 text-gray-500">
-                    <Caption className="font-medium text-sm sm:text-base">{formatDate(news.created_at)}</Caption>
-                    <Caption className="font-medium text-sm sm:text-base">Текст: Ред. СтудСовет ИУ</Caption>
-                    <Caption className="font-medium text-sm sm:text-base">Фото: Архив</Caption>
+                    <Caption className="font-medium text-base">{formatDate(news.created_at)}</Caption>
+                    <Caption className="font-medium text-base">Текст: Ред. СтудСовет ИУ</Caption>
+                    <Caption className="font-medium text-base">Фото: Архив</Caption>
                 </div>
 
                 <div className="w-full aspect-[4/3] sm:aspect-video relative overflow-hidden bg-gray-100 mb-10">
@@ -64,7 +64,7 @@ export default function NewsDetailsPage() {
                 </div>
 
                 <div className="w-full">
-                    <p className="text-lg sm:text-xl md:text-[22px] text-gray-800 whitespace-pre-wrap leading-relaxed">
+                    <p className="text-[22px] text-gray-800 whitespace-pre-wrap leading-relaxed">
                         {news.description}
                     </p>
                 </div>
