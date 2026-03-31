@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: studiu_next
+    container_name: stud-iu
     build:
       context: .
     image: nextjs-prod
@@ -20,10 +20,11 @@ services:
     networks:
       - localnet
     volumes:
-      - ${UPLOADS:-./uploads}:/app/storage
-  postgres:
-    container_name: studiu_postgres
-    image: postgres:15
+      - ./uploads_data:/app/storage
+  db:
+    container_name: stud-iu-postgres
+    image: postgres:15-alpine
+    restart: always
     env_file:
       - .env
     networks:
