@@ -48,7 +48,7 @@ export default function NewsDetailsPage() {
                 <Text level={4} className="font-bold">Назад</Text>
             </Button>
 
-            <div className="flex flex-col mx-auto w-full max-w-6xl">
+            <div className="flex flex-col mx-auto w-full max-w-[60dvw]">
                 <Title level={2} className="leading-tight mb-6 !text-3xl sm:!text-4xl md:!text-5xl lg:!text-6xl text-gray-900">
                     {news.title}
                 </Title>
