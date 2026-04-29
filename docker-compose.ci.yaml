@@ -1,6 +1,6 @@
 services:
   web:
-    container_name: stud-iu
+    container_name: stud-iu-new
     build: .
     ports:
       - "${PORT:-3000}:3000"
