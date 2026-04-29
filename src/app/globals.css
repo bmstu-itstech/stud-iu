@@ -50,3 +50,14 @@ html {
 .scrolling-active {
     scroll-snap-type: none;
 }
+
+@layer utilities {
+    .scrollbar-hide {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+}

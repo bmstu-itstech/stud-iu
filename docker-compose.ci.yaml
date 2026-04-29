@@ -6,7 +6,7 @@ services:
       - "${PORT:-3000}:3000"
     environment:
       - NEXTAUTH_SECRET=$NEXTAUTH_SECRET
-      - DATABASE_URL=$DATABASE_URI
+      - DATABASE_URI=$DATABASE_URI
     volumes:
       - uploads:/app/storage
 

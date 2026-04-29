@@ -7,7 +7,7 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 const prismaClientSingleton = () => {
     const pool = new Pool({
-        connectionString: process.env.DATABASE_URL
+        connectionString: process.env.DATABASE_URI
     });
 
     const adapter = new PrismaPg(pool);

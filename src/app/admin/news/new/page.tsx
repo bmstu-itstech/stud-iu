@@ -45,6 +45,7 @@ export default function CreateNewsPage() {
             await apiClient.post('/news', formData);
             toast.success('Новость создана!');
             router.push('/admin/news');
+            router.refresh();
         } catch (e) {
             console.error(e);
             toast.error('Что-то пошло не так');

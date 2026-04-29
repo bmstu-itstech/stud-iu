@@ -10,12 +10,12 @@ export const EventCardSkeleton: FC<Props> = ({ mode = 'full' }) => {
 
     if (mode === 'compact') {
         return (
-            <div className={cn(baseClass, "max-w-220 w-[350px] h-[152px] flex")}>
-                <div className="flex flex-col gap-4 p-6 flex-1 justify-center">
+            <div className={cn(baseClass, "w-full h-full min-h-[160px] flex")}>
+                <div className="flex flex-col gap-4 p-6 sm:p-8 flex-1 justify-center min-w-0">
                     <div className="h-6 bg-gray-300 rounded w-3/4" />
                     <div className="h-4 bg-gray-300 rounded w-full" />
                 </div>
-                <div className="bg-gray-300 rounded-3xl w-100 min-w-100 h-100 min-h-100 m-auto mr-6" />
+                <div className="bg-gray-300 rounded-2xl sm:rounded-3xl w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] my-auto mr-6 sm:mr-8 shrink-0" />
             </div>
         );
     }

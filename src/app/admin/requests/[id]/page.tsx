@@ -70,6 +70,7 @@ export default function RequestDetailsPage() {
         try {
             await apiClient.put(`/join_requests/${id}`, { status, admin_comment: comment });
             toast.success('Сохранено');
+            router.refresh();
         } catch {
             toast.error('Ошибка');
         } finally {
@@ -81,6 +82,7 @@ export default function RequestDetailsPage() {
         if(!confirm('Удалить навсегда?')) return;
         await apiClient.delete(`/join_requests/${id}`);
         router.push('/admin/requests');
+        router.refresh();
     };
 
     if (!req) return null;

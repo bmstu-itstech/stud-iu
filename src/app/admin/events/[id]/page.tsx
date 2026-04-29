@@ -25,6 +25,73 @@ interface EventForm {
     images: FileList;
 }
 
+const formatCustomDate = (val: string, precision: string) => {
+    const digits = val.replace(/\D/g, '');
+    let res = '';
+    if (precision === 'time') {
+        if (digits.length > 0) res += digits.substring(0, 2);
+        if (digits.length >= 3) res += '.' + digits.substring(2, 4);
+        if (digits.length >= 5) res += '.' + digits.substring(4, 8);
+        if (digits.length >= 9) res += ', ' + digits.substring(8, 10);
+        if (digits.length >= 11) res += ':' + digits.substring(10, 12);
+    } else if (precision === 'day') {
+        if (digits.length > 0) res += digits.substring(0, 2);
+        if (digits.length >= 3) res += '.' + digits.substring(2, 4);
+        if (digits.length >= 5) res += '.' + digits.substring(4, 8);
+    } else if (precision === 'month') {
+        if (digits.length > 0) res += digits.substring(0, 2);
+        if (digits.length >= 3) res += '.' + digits.substring(2, 6);
+    } else if (precision === 'year') {
+        res = digits.substring(0, 4);
+    }
+    return res;
+};
+
+const parseToBackendFormat = (val: string, precision: string) => {
+    if (!val) return '';
+    if (val.includes('-')) return val;
+    const digits = val.replace(/\D/g, '');
+
+    if (precision === 'time' && digits.length >= 12) {
+        return `${digits.slice(4, 8)}-${digits.slice(2, 4)}-${digits.slice(0, 2)}T${digits.slice(8, 10)}:${digits.slice(10, 12)}`;
+    } else if (precision === 'day' && digits.length >= 8) {
+        return `${digits.slice(4, 8)}-${digits.slice(2, 4)}-${digits.slice(0, 2)}`;
+    } else if (precision === 'month' && digits.length >= 6) {
+        return `${digits.slice(2, 6)}-${digits.slice(0, 2)}`;
+    } else if (precision === 'year' && digits.length >= 4) {
+        return digits.slice(0, 4);
+    }
+    return val;
+};
+
+const getMaxLength = (prec: string) => {
+    if (prec === 'time') return 17;
+    if (prec === 'day') return 10;
+    if (prec === 'month') return 7;
+    return 4;
+};
+
+const getPlaceholder = (prec: string) => {
+    if (prec === 'year') return 'ГГГГ (напр. 2026)';
+    if (prec === 'month') return 'ММ.ГГГГ (напр. 04.2026)';
+    if (prec === 'day') return 'ДД.ММ.ГГГГ (напр. 30.04.2026)';
+    return 'ДД.ММ.ГГГГ, ЧЧ:ММ (напр. 30.04.2026, 12:30)';
+};
+
+// Функция парсит дату с сервера сразу в нашу красивую маску
+const formatForInput = (dateStr: string | null | undefined, prec: string) => {
+    if (!dateStr) return '';
+    const dateObj = new Date(dateStr);
+    dateObj.setMinutes(dateObj.getMinutes() - dateObj.getTimezoneOffset());
+    const iso = dateObj.toISOString();
+
+    if (prec === 'time') return `${iso.slice(8, 10)}.${iso.slice(5, 7)}.${iso.slice(0, 4)}, ${iso.slice(11, 16)}`;
+    if (prec === 'day') return `${iso.slice(8, 10)}.${iso.slice(5, 7)}.${iso.slice(0, 4)}`;
+    if (prec === 'month') return `${iso.slice(5, 7)}.${iso.slice(0, 4)}`;
+    if (prec === 'year') return iso.slice(0, 4);
+    return iso.slice(0, 16);
+};
+
 export default function EditEventPage() {
     const router = useRouter();
     const params = useParams();
@@ -37,18 +104,6 @@ export default function EditEventPage() {
     const [previewImage, setPreviewImage] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-
-    const formatForInput = (dateStr: string | null | undefined, prec: string) => {
-        if (!dateStr) return '';
-        const dateObj = new Date(dateStr);
-        dateObj.setMinutes(dateObj.getMinutes() - dateObj.getTimezoneOffset());
-        const iso = dateObj.toISOString();
-        if (prec === 'time') return iso.slice(0, 16);
-        if (prec === 'day') return iso.slice(0, 10);
-        if (prec === 'month') return iso.slice(0, 7);
-        if (prec === 'year') return iso.slice(0, 4);
-        return iso.slice(0, 16);
-    };
 
     useEffect(() => {
         if (!eventId) return;
@@ -81,18 +136,12 @@ export default function EditEventPage() {
             .finally(() => setIsLoading(false));
     }, [eventId, reset, router]);
 
-
     const wType = watch('type');
     const wName = watch('name');
     const wDesc = watch('description');
     const wColor = watch('color');
     const wDate = watch('start_datetime');
     const wPrecision = watch('precision') || 'time';
-
-    let dateInputType = 'datetime-local';
-    if (wPrecision === 'month') dateInputType = 'month';
-    else if (wPrecision === 'day') dateInputType = 'date';
-    else if (wPrecision === 'year') dateInputType = 'number';
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -109,10 +158,10 @@ export default function EditEventPage() {
         formData.append('place', data.place || '');
         formData.append('color', data.color);
         formData.append('precision', data.precision || 'time');
-        formData.append('start_datetime', data.start_datetime);
 
+        formData.append('start_datetime', parseToBackendFormat(data.start_datetime, data.precision));
         if (data.end_datetime) {
-            formData.append('end_datetime', data.end_datetime);
+            formData.append('end_datetime', parseToBackendFormat(data.end_datetime, data.precision));
         }
 
         if (data.type === 'FUTURE' && data.registration_link) {
@@ -138,6 +187,9 @@ export default function EditEventPage() {
             setIsSubmitting(false);
         }
     };
+
+    const { onChange: onStartChange, ...restStart } = register('start_datetime', { required: 'Выберите дату' });
+    const { onChange: onEndChange, ...restEnd } = register('end_datetime');
 
     if (isLoading) return <div className="p-10 text-center text-gray-500">Загрузка...</div>;
 
@@ -181,16 +233,28 @@ export default function EditEventPage() {
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <input
-                                type={dateInputType}
-                                placeholder={wPrecision === 'year' ? 'Год (напр. 2026)' : ''}
-                                {...register('start_datetime', { required: 'Выберите дату' })}
-                                className="w-full sm:flex-1 p-4 bg-white border border-gray-200 rounded-xl text-lg font-medium outline-none"
+                                type="text"
+                                inputMode="numeric"
+                                placeholder={getPlaceholder(wPrecision)}
+                                maxLength={getMaxLength(wPrecision)}
+                                {...restStart}
+                                onChange={(e) => {
+                                    e.target.value = formatCustomDate(e.target.value, wPrecision);
+                                    onStartChange(e);
+                                }}
+                                className="w-full sm:flex-1 p-4 bg-white border border-gray-200 rounded-xl text-lg font-medium outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500/20"
                             />
                             <input
-                                type={dateInputType}
-                                placeholder={wPrecision === 'year' ? 'Конец: Год (напр. 2027)' : 'Конец (опционально)'}
-                                {...register('end_datetime')}
-                                className="w-full sm:flex-1 p-4 bg-white border border-gray-200 rounded-xl text-lg font-medium outline-none placeholder:text-gray-400"
+                                type="text"
+                                inputMode="numeric"
+                                placeholder={wPrecision === 'year' ? 'Конец: ГГГГ' : 'Конец (опционально)'}
+                                maxLength={getMaxLength(wPrecision)}
+                                {...restEnd}
+                                onChange={(e) => {
+                                    e.target.value = formatCustomDate(e.target.value, wPrecision);
+                                    onEndChange(e);
+                                }}
+                                className="w-full sm:flex-1 p-4 bg-white border border-gray-200 rounded-xl text-lg font-medium outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500/20"
                             />
                         </div>
                     </div>
@@ -229,8 +293,8 @@ export default function EditEventPage() {
                             name={wName || 'Название события'}
                             description={wDesc || 'Описание события...'}
                             color={wColor}
-                            start_datetime={wDate || new Date().toISOString()}
-                            images={previewImage ? [{ id: 0, image: previewImage }] :[]}
+                            start_datetime={wDate ? parseToBackendFormat(wDate, wPrecision) : new Date().toISOString()}
+                            images={previewImage ? [{ id: 0, image: previewImage }] : []}
                             place=""
                             date_range=""
                             mode="full"

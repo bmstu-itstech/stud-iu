@@ -52,6 +52,7 @@ export default function CreateMemberPage() {
 
             toast.success('Участник добавлен');
             router.push('/admin/members');
+            router.refresh();
         } catch {
             toast.error('Ошибка создания');
         } finally {

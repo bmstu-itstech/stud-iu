@@ -1,7 +1,9 @@
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 
-const UPLOAD_DIR = '/app/storage';
+const UPLOAD_DIR = process.env.UPLOAD_DIR 
+    ? path.resolve(process.env.UPLOAD_DIR) 
+    : '/app/storage';
 
 export async function saveFile(file: File | unknown, folder: string): Promise<string | null> {
     if (!file) return null;

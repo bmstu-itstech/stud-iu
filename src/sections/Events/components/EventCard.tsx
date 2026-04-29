@@ -27,19 +27,19 @@ const EventCard: FC<Props> = ({ mode = 'full', ...props }) => {
         return (
             <div
                 onClick={handleClick}
-                className="rounded-3xl overflow-hidden w-full max-w-220 min-w-[300px] h-full flex cursor-pointer select-none transition-transform hover:scale-[1.02]"
+                className="rounded-3xl overflow-hidden w-full h-full flex cursor-pointer select-none transition-transform hover:scale-[1.02]"
                 style={{ backgroundColor: props.color || 'var(--color-blue-primary)' }}
             >
-                <div className="flex flex-col gap-4 text-white p-6 flex-1 justify-center">
-                    <Title level={4}>{props.name}</Title>
-                    <Caption level={1} className="line-clamp-2 text-white/80">{props.description}</Caption>
+                <div className="flex flex-col gap-3 text-white p-6 sm:p-8 flex-1 justify-center min-w-0">
+                    <Title level={4} className="truncate">{props.name}</Title>
+                    <Caption level={2} className="line-clamp-2 text-white/80 !text-sm sm:!text-base leading-snug">{props.description}</Caption>
                 </div>
                 <Image
                     width={150}
                     height={150}
                     alt={props.name}
                     src={imageUrl}
-                    className="rounded-3xl object-cover w-[100px] h-[100px] my-auto mr-6 bg-white/10 shrink-0 self-center"
+                    className="rounded-2xl sm:rounded-3xl object-cover w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] my-auto mr-6 sm:mr-8 bg-white/10 shrink-0 self-center"
                 />
             </div>
         );

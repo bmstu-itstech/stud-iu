@@ -43,6 +43,7 @@ export default function CreatePartnerPage() {
 
             toast.success('Партнер добавлен');
             router.push('/admin/partners');
+            router.refresh();
         } catch (e) {
             console.error(e);
             toast.error('Ошибка при создании');

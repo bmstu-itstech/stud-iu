@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import type { FC } from 'react';
 import { usePartners } from '@/shared/hooks/usePartners';
+import { useHorizontalScroll } from '@/shared/utils';
 
 import { Text, Title } from '@/shared/ui/Typography';
 import Contact from './components/Contact';
@@ -12,19 +13,22 @@ import { getImageUrl } from "@/shared/utils/getImageUrl";
 const Additional: FC = () => {
     const { data: partners, isLoading, isError } = usePartners(12);
 
+    const partnersScrollRef = useHorizontalScroll();
+    const contactsScrollRef = useHorizontalScroll();
+
     return (
         <section
             id="additional"
             className="flex flex-col w-full mx-auto px-6 py-40 pb-32 bg-gradient-to-b from-black to-blue-primary"
         >
-            <div className="flex flex-col mx-auto w-full max-w-primary gap-24">
+            <div className="flex flex-col mx-auto w-full max-w-primary gap-24 overflow-hidden">
 
                 <div className="space-y-16">
                     <Title level={1} className="text-white text-center sm:text-7xl">
                         Наши партнёры
                     </Title>
 
-                    <div className="flex overflow-x-auto gap-8 pb-4 scrollbar-hide sm:justify-center sm:flex-wrap min-h-[160px]">
+                    <div ref={partnersScrollRef} className="flex overflow-x-auto gap-8 pb-4 scrollbar-hide sm:justify-center sm:flex-wrap min-h-[160px]">
                         {isLoading ? (
                             Array.from({ length: 6 }).map((_, i) => (
                                 <div key={i} className="w-40 h-40 bg-white/10 rounded-xl animate-pulse flex-shrink-0" />
@@ -44,20 +48,20 @@ const Additional: FC = () => {
                                             height={120}
                                             src={getImageUrl(partner.image)}
                                             alt={partner.name}
-                                            className="object-contain w-full h-full"
+                                            className="object-contain w-full h-full pointer-events-none"
                                         />
                                     </div>
                                 );
 
                                 if (partner.url) {
                                     return (
-                                        <a key={partner.id} href={partner.url} target="_blank" rel="noopener noreferrer">
+                                        <a key={partner.id} href={partner.url} target="_blank" rel="noopener noreferrer" className="shrink-0">
                                             {Content}
                                         </a>
                                     );
                                 }
 
-                                return <div key={partner.id}>{Content}</div>;
+                                return <div key={partner.id} className="shrink-0">{Content}</div>;
                             })
                         )}
                     </div>
@@ -68,7 +72,7 @@ const Additional: FC = () => {
                         Контакты
                     </Title>
 
-                    <div className="flex overflow-x-auto lg:overflow-x-visible lg:flex-row lg:justify-between items-center gap-8 lg:gap-16 w-full max-w-[1600px] mx-auto pb-4 px-4 sm:px-0 snap-x snap-mandatory scrollbar-hide">
+                    <div ref={contactsScrollRef} className="flex overflow-x-auto lg:overflow-x-visible lg:flex-row lg:justify-between items-center gap-8 lg:gap-16 w-full max-w-[1600px] mx-auto pb-4 px-4 sm:px-0 snap-x snap-mandatory scrollbar-hide">
                         {contacts.map((contact) => (
                             <div key={contact.name} className="snap-center shrink-0">
                                 <Contact {...contact} />

@@ -13,22 +13,24 @@ export default function EventsPage() {
 
     return (
         <>
-            <section className="flex flex-1 max-sm:flex-col gap-30 w-dvw mx-auto px-6 2xl:px-0 max-w-primary pb-24 pt-12">
-                <div className="flex flex-col gap-4 max-w-250">
+            <section className="flex flex-col lg:flex-row gap-8 lg:gap-16 w-full mx-auto px-6 2xl:px-0 max-w-primary pb-24 pt-12 overflow-hidden">
+                <div className="flex flex-col gap-4 w-full lg:w-[350px] xl:w-[400px] shrink-0">
                     <Title level={2} className="leading-none">Будущие мероприятия</Title>
                     <Text level={2} className="text-gray-500">Регистрируйтесь на наши новые мероприятия</Text>
                 </div>
 
-                <div ref={scrollRef} className="flex items-stretch gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory min-h-[150px]">
+                <div ref={scrollRef} className="flex-1 min-w-0 flex items-stretch gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory">
                     {isFutureLoading ? (
                         Array.from({ length: 4 }).map((_, i) => (
-                            <div key={i} className="flex-shrink-0 snap-start"><EventCardSkeleton mode="compact" /></div>
+                            <div key={i} className="shrink-0 snap-start w-[320px] sm:w-[450px]">
+                                <EventCardSkeleton mode="compact" />
+                            </div>
                         ))
                     ) : isFutureError ? (
                         <Text className="text-red-500">Ошибка загрузки</Text>
                     ) : (
                         futureEvents?.map((event) => (
-                            <div key={event.id} className="flex-shrink-0 snap-start h-auto">
+                            <div key={event.id} className="shrink-0 snap-start h-auto w-[320px] sm:w-[450px]">
                                 <EventCard mode="compact" {...event} />
                             </div>
                         ))

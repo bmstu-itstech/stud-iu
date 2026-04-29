@@ -2,7 +2,9 @@ import { type NextRequest, NextResponse } from "next/server";
 import path from "path";
 import fs from "fs";
 
-const UPLOAD_DIR = "/app/storage";
+const UPLOAD_DIR = process.env.UPLOAD_DIR 
+    ? path.resolve(process.env.UPLOAD_DIR) 
+    : "/app/storage";
 
 export async function GET(
     req: NextRequest,
