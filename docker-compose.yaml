@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: stud-iu-new
+    container_name: studiu_next
     build:
       context: .
     image: nextjs-prod
