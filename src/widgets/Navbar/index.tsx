@@ -43,7 +43,7 @@ const Navbar: FC = () => {
                         <Links />
 
                         <div className="flex items-center gap-4">
-                            <Button variant="black" size="inline" className="hidden lg:flex" onClick={openJoinModal}>
+                            <Button variant="black" size="inline" className="hidden lg:flex" onClick={() => window.location.href = "https://forms.yandex.ru/u/69b154576d2d73185b353a95"}>
                                 <Caption level={2} className="text-white font-bold">Стать активистом</Caption>
                             </Button>
                             
@@ -68,7 +68,7 @@ const Navbar: FC = () => {
                         </Link>
                     ))}
                 </nav>
-                <Button variant="black" size="inline" className="mt-8 flex lg:hidden px-10 py-5" onClick={() => { setIsMobileMenuOpen(false); openJoinModal(); }}>
+                <Button variant="black" size="inline" className="mt-8 flex lg:hidden px-10 py-5" onClick={() => { setIsMobileMenuOpen(false); window.location.href = "https://forms.yandex.ru/u/69b154576d2d73185b353a95" }}>
                     <Title level={5} className="text-white font-bold">Стать активистом</Title>
                 </Button>
             </div>

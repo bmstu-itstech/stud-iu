@@ -30,7 +30,7 @@ const About: FC = () => {
                         организовывать мероприятия.
                     </Text>
                     <div className="mt-4">
-                        <Button variant="blue" size="full" className="w-full sm:w-auto" onClick={openJoinModal}>
+                        <Button variant="blue" size="full" className="w-full sm:w-auto" onClick={() => window.location.href = "https://forms.yandex.ru/u/69b154576d2d73185b353a95"}>
                             <Text level={4}>Стать активистом</Text>
                         </Button>
                     </div>
