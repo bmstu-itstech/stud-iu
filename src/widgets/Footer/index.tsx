@@ -44,7 +44,7 @@ const Footer: FC = () => {
 
                 <div className="flex flex-col xl:flex-row justify-between items-center gap-10 mt-8">
                     <div className="flex flex-col sm:flex-row gap-6 w-full xl:w-auto">
-                        <Button variant="blue" size="inline" className="justify-between sm:justify-center" onClick={openJoinModal}>
+                        <Button variant="blue" size="inline" className="justify-between sm:justify-center" onClick={() => window.location.href = "https://forms.yandex.ru/u/69b154576d2d73185b353a95"}>
                             <Text level={3}>Хочу к вам</Text>
                             <Image src="/icons/arrow_right.svg" alt="" width={24} height={24} />
                         </Button>
