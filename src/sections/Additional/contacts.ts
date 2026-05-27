@@ -7,22 +7,22 @@ export interface ContactProps {
 
 const contacts: ContactProps[] = [
     {
-        avatarUrl: '/images/k_zhikharev.jpg',
-        name: 'Кирилл Жихарев',
-        role: 'Глава ITS BMSTU',
-        tg_link: '@zhikhkirill'
-    },
-    {
         avatarUrl: '/images/a_evdokimova.jpg',
         name: 'Анастасия Евдокимова',
         role: 'Председатель',
         tg_link: '@epkoliptik'
     },
     {
-        avatarUrl: '/images/i_chistyakov.jpg',
-        name: 'Илья Чистяков',
+        avatarUrl: '/images/k_zhikharev.jpg',
+        name: 'Кирилл Жихарев',
+        role: 'Заместитель председателя',
+        tg_link: '@zhikhkirill'
+    },
+    {
+        avatarUrl: '/images/d_domnich.jpg',
+        name: 'Данил Домнич',
         role: 'Внешние коммуникации',
-        tg_link: '@Bragadir'
+        tg_link: '@h1rotik'
     },
 ];
 
