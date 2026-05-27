@@ -8,7 +8,7 @@ import { useHorizontalScroll } from '@/shared/utils';
 
 export default function EventsPage() {
     const { data: futureEvents, isLoading: isFutureLoading, isError: isFutureError } = useFutureEvents(10);
-    const { data: pastEvents, isLoading: isPastLoading, isError: isPastError } = usePastEvents(6);
+    const { data: pastEvents, isLoading: isPastLoading, isError: isPastError } = usePastEvents(100);
     const scrollRef = useHorizontalScroll();
 
     return (
