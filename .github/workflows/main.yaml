@@ -83,32 +83,6 @@ jobs:
       - name: Run build
         run: npm run build
 
-  telegram-notify:
-    name: Telegram Notification
-    runs-on: ubuntu-latest
-    needs: [build]
-    environment: production
-    if: always()
-    steps:
-      - name: Send Telegram notification
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: html
-          message: |
-            <b>${{ needs.build.result == 'success' && '✅ Build Success' || '❌ Build Failed' }}</b>
-            
-            <b>📦 Repo:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
-            <b>🌿 Branch:</b> ${{ github.ref_name }}
-            <b>👤 User:</b> ${{ github.actor }}
-            
-            <b>💬 Commit:</b>
-            <code>${{ github.event.head_commit.message }}</code>
-            
-            🔗 <a href="https://github.com/${{ github.repository }}/commit/${{ github.sha }}">View Changes</a>
-            🎬 <a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}">View Action</a>
-
   deploy:
     runs-on: ubuntu-latest
     needs: [build]
