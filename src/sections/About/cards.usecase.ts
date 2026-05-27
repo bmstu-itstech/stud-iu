@@ -8,7 +8,7 @@ export interface CardProps {
 export const cards: CardProps[] = [
     {
         title: '250 человек',
-        description: 'Стараются изо всех сил',
+        description: 'Активных студентов, которые работают на результат',
         caption: 'Присоединиться к команде',
         href: 'https://t.me/studsovet_iu',
     },
