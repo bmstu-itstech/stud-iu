@@ -10,7 +10,6 @@ import { Text, Title } from "@/shared/ui/Typography";
 import Field from "./components/Field";
 
 const Footer: FC = () => {
-
   return (
     <footer className="bg-black text-white py-20 px-6">
       <div className="flex flex-col w-full max-w-primary mx-auto gap-16">

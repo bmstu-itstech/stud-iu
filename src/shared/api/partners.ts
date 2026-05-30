@@ -1,34 +1,32 @@
-import type { AxiosResponse } from 'axios';
-import apiClient from './axios';
-import type { Partner, PaginatedResponse } from './types';
+import type { AxiosResponse } from "axios";
+import apiClient from "./axios";
+import type { Partner, PaginatedResponse } from "./types";
 
-const BASE_URL = '/partners';
+const BASE_URL = "/partners";
 
 interface ListParams {
-    limit?: number;
-    offset?: number;
+  limit?: number;
+  offset?: number;
 }
 
 export const getPartners = (
-    params?: ListParams
+  params?: ListParams,
 ): Promise<AxiosResponse<PaginatedResponse<Partner>>> => {
-    return apiClient.get(BASE_URL + '/', { params });
+  return apiClient.get(BASE_URL + "/", { params });
 };
 
-export const getPartnerById = (
-    id: number
-): Promise<AxiosResponse<Partner>> => {
-    return apiClient.get(`${BASE_URL}/${id}/`);
+export const getPartnerById = (id: number): Promise<AxiosResponse<Partner>> => {
+  return apiClient.get(`${BASE_URL}/${id}/`);
 };
 
 export const createPartner = (data: unknown) => {
-    return apiClient.post(BASE_URL + '/', data);
+  return apiClient.post(BASE_URL + "/", data);
 };
 
 export const updatePartner = (id: number, data: unknown) => {
-    return apiClient.put(`${BASE_URL}/${id}/`, data);
+  return apiClient.put(`${BASE_URL}/${id}/`, data);
 };
 
 export const deletePartner = (id: number) => {
-    return apiClient.delete(`${BASE_URL}/${id}/`);
+  return apiClient.delete(`${BASE_URL}/${id}/`);
 };
