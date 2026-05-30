@@ -50,7 +50,7 @@ const About: FC = () => {
             </div>
 
             <div className="w-full overflow-x-auto pb-4 scrollbar-hide">
-                <div className="flex gap-4 min-w-max md:min-w-0 md:grid md:grid-cols-2 xl:grid-cols-4">
+                <div className="flex gap-4 min-w-max md:min-w-0 md:grid md:grid-cols-2 2xl:grid-cols-4">
                     {cards.map((card) => (
                         <Card {...card} key={card.title} />
                     ))}

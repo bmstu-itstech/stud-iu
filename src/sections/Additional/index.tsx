@@ -28,7 +28,7 @@ const Additional: FC = () => {
                         Наши партнёры
                     </Title>
 
-                    <div ref={partnersScrollRef} className="flex overflow-x-auto gap-8 py-2 pb-4 scrollbar-hide w-full h-fit">
+                    <div ref={partnersScrollRef} className="flex overflow-x-auto gap-8 py-2 pb-4 scrollbar-hide w-full h-fit justify-start sm:justify-center">
                         {isLoading ? (
                             Array.from({ length: 6 }).map((_, i) => (
                                 <div key={i} className="w-40 h-40 bg-white/10 rounded-xl animate-pulse flex-shrink-0" />
