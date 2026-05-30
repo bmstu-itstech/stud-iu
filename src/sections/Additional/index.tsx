@@ -11,7 +11,7 @@ import contacts from './contacts';
 import { getImageUrl } from "@/shared/utils/getImageUrl";
 
 const Additional: FC = () => {
-    const { data: partners, isLoading, isError } = usePartners(12);
+    const { data: partners, isLoading, isError } = usePartners(100);
 
     const partnersScrollRef = useHorizontalScroll();
     const contactsScrollRef = useHorizontalScroll();
