@@ -23,10 +23,7 @@ export default function useHorizontalScroll() {
             }
 
             e.preventDefault();
-            el.scrollBy({
-                left: e.deltaY > 0 ? 350 : -350,
-                behavior: 'smooth'
-            });
+            el.scrollLeft += e.deltaY;
         };
 
         let isDown = false;
