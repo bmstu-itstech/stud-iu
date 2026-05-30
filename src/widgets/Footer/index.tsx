@@ -22,10 +22,10 @@ const Footer: FC = () => {
                 <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center justify-between border-b border-white/10 pb-10">
                     <Title level={2}>Студенческий совет ИУ</Title>
                     <div className="flex gap-6">
-                        <Link href="https://t.me/studsovet_bmstu" target="_blank" className="hover:text-blue-primary transition-colors">
+                        <Link href="https://t.me/studsovet_iu" target="_blank" className="hover:text-blue-primary transition-colors">
                             <FaTelegram size={40} />
                         </Link>
-                        <Link href="https://vk.com/studsovet_bmstu" target="_blank" className="hover:text-blue-primary transition-colors">
+                        <Link href="https://vk.com/studsovet_iu" target="_blank" className="hover:text-blue-primary transition-colors">
                             <FaVk size={40} />
                         </Link>
                     </div>
