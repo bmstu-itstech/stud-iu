@@ -6,11 +6,8 @@ import Button from '@/shared/ui/Button';
 import { Text, Title } from '@/shared/ui/Typography';
 import { cards } from './cards.usecase';
 import Card from './components/Card';
-import { useModal } from "@/shared/context/ModalContext";
 
 const About: FC = () => {
-
-    const { openJoinModal } = useModal();
 
     return (
         <section
@@ -53,7 +50,7 @@ const About: FC = () => {
             </div>
 
             <div className="w-full overflow-x-auto pb-4 scrollbar-hide">
-                <div className="flex gap-4 min-w-max lg:min-w-0 lg:grid lg:grid-cols-4">
+                <div className="flex gap-4 min-w-max md:min-w-0 md:grid md:grid-cols-2 xl:grid-cols-4">
                     {cards.map((card) => (
                         <Card {...card} key={card.title} />
                     ))}

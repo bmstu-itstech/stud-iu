@@ -29,7 +29,8 @@ export async function GET(
         ".jpg": "image/jpeg",
         ".jpeg": "image/jpeg",
         ".png": "image/png",
-        ".webp": "image/webp"
+        ".webp": "image/webp",
+        ".svg": "image/svg+xml"
     };
 
     return new NextResponse(fileBuffer, {
