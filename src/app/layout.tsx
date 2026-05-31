@@ -23,9 +23,74 @@ const alsSector = localFont({
   ],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://stud-iu.ru";
+
 export const metadata: Metadata = {
-  title: "СтудИУ",
-  description: "Студенческий совет ИУ",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "СтудИУ — Студенческий совет ИУ МГТУ им. Н.Э. Баумана",
+    template: "%s | СтудИУ",
+  },
+  description:
+    "Официальный сайт Студенческого совета факультета Информатики и систем управления (ИУ) МГТУ им. Н.Э. Баумана. Новости, будущие и прошедшие мероприятия, студенческие инициативы и ИТ-сообщество.",
+  keywords: [
+    "СтудИУ",
+    "Студенческий совет ИУ",
+    "МГТУ им. Баумана",
+    "ИУ",
+    "Студсовет",
+    "Бауманка",
+    "ИТ-сообщество",
+    "новости ИУ",
+    "мероприятия МГТУ",
+  ],
+  authors: [{ name: "ITS TECH" }],
+  creator: "ITS TECH",
+  publisher: "Студенческий совет ИУ",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: siteUrl,
+    title: "СтудИУ — Студенческий совет ИУ МГТУ им. Н.Э. Баумана",
+    description:
+      "Официальный сайт Студенческого совета факультета Информатики и систем управления (ИУ) МГТУ им. Н.Э. Баумана. Новости, будущие и прошедшие мероприятия, студенческие инициативы и ИТ-сообщество.",
+    siteName: "СтудИУ",
+    images: [
+      {
+        url: "/images/team.png",
+        width: 1200,
+        height: 630,
+        alt: "Команда Студенческого совета ИУ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "СтудИУ — Студенческий совет ИУ МГТУ им. Н.Э. Баумана",
+    description:
+      "Официальный сайт Студенческого совета факультета Информатики и систем управления (ИУ) МГТУ им. Н.Э. Баумана. Новости, будущие и прошедшие мероприятия, студенческие инициативы и ИТ-сообщество.",
+    images: ["/images/team.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -33,9 +98,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "СтудИУ — Студенческий совет ИУ МГТУ им. Н.Э. Баумана",
+    url: siteUrl,
+    logo: `${siteUrl}/icons/logo.svg`,
+    sameAs: ["https://t.me/studsovet_iu", "https://vk.com/studsovet_iu"],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "student support",
+      email: "studsovetiu@yandex.ru",
+    },
+  };
+
   return (
     <html lang="ru">
       <body className={`antialiased ${alsSector.className} bg-gray-50`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Providers>
           <ModalProvider>
             <HashScrollFix />
