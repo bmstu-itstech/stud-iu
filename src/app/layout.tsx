@@ -24,6 +24,7 @@ const alsSector = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://stud-iu.ru";
+const logoUrl = `${siteUrl}/icon.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -71,19 +72,19 @@ export const metadata: Metadata = {
     siteName: "СтудИУ",
     images: [
       {
-        url: "/images/team.png",
-        width: 1200,
-        height: 630,
-        alt: "Команда Студенческого совета ИУ",
+        url: logoUrl,
+        width: 512,
+        height: 512,
+        alt: "Логотип СтудИУ",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "СтудИУ — Студенческий совет ИУ МГТУ им. Н.Э. Баумана",
     description:
-      "Официальный сайт Студенческого совета факультета Информатики и систем управления (ИУ) МГТУ им. Н.Э. Баумана. Новости, будущие и прошедшие мероприятия, студенческие инициативы и ИТ-сообщество.",
-    images: ["/images/team.png"],
+      "Официальный сайт Студенческого совета факультета Информатики и систем управления (ИУ) МГТУ им. Н.Э. Баумана.",
+    images: [logoUrl],
   },
   icons: {
     icon: [
