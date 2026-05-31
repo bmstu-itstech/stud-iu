@@ -63,6 +63,7 @@ const EventCard: FC<Props> = ({ mode = "full", ...props }) => {
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           alt={props.name}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
@@ -90,6 +91,7 @@ const EventCard: FC<Props> = ({ mode = "full", ...props }) => {
           fill
           className="object-cover z-10"
           alt={props.name}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
 
         <div

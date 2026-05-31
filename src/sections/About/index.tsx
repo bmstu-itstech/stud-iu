@@ -8,6 +8,7 @@ import { cards } from "./cards.usecase";
 import Card from "./components/Card";
 
 const About: FC = () => {
+
   return (
     <section
       id="about"
@@ -48,6 +49,7 @@ const About: FC = () => {
               width={600}
               height={450}
               alt="Команда Студсовета"
+              sizes="(max-width: 1024px) 100vw, 600px"
               priority
             />
 
