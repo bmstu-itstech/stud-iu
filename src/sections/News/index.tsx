@@ -28,9 +28,9 @@ const News: FC = () => {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
         <div className="flex flex-col gap-6 w-full justify-start py-2">
-          <Title className="leading-none">Наши новости</Title>
+          <Title className="leading-none">Новости организации</Title>
           <Text className="text-gray-600 text-lg sm:text-xl max-w-6xl leading-relaxed">
-            Последние события факультета ИУ
+            Свежая информация о последних событиях в жизни факультета.
           </Text>
         </div>
 
