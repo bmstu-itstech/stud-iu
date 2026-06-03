@@ -19,7 +19,7 @@ const Additional: FC = () => {
   return (
     <section
       id="additional"
-      className="flex flex-col w-full mx-auto px-6 py-24 sm:py-32 bg-gradient-to-b from-black to-blue-primary"
+      className="flex flex-col w-full mx-auto px-6 py-20 sm:py-32 bg-gradient-to-b from-black to-blue-primary"
     >
       <div className="flex flex-col mx-auto w-full max-w-primary gap-24 overflow-hidden">
         <div className="space-y-16">
@@ -89,10 +89,13 @@ const Additional: FC = () => {
 
           <div
             ref={contactsScrollRef}
-            className="flex overflow-x-auto lg:overflow-x-visible lg:flex-row lg:justify-center items-start gap-8 lg:gap-24 w-full max-w-[1600px] mx-auto pb-4 px-4 sm:px-0 snap-x snap-mandatory scrollbar-hide"
+            className="flex overflow-x-auto lg:overflow-x-visible lg:flex-row lg:justify-center items-start gap-8 lg:gap-16 xl:gap-20 w-full max-w-[1600px] mx-auto pb-4 px-6 sm:px-12 lg:px-16 snap-x snap-mandatory scrollbar-hide"
           >
             {contacts.map((contact) => (
-              <div key={contact.name} className="snap-center shrink-0">
+              <div
+                key={contact.name}
+                className="snap-center shrink-0 w-[280px] sm:w-[320px] lg:w-[360px] flex justify-center"
+              >
                 <Contact {...contact} />
               </div>
             ))}
