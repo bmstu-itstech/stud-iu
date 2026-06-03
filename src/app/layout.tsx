@@ -109,7 +109,7 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "student support",
-      email: "studsovetiu@yandex.ru",
+      email: "studsovet.iu@yandex.ru",
     },
   };
 

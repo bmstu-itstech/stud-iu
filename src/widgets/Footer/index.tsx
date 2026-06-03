@@ -35,7 +35,7 @@ const Footer: FC = () => {
 
         <div className="flex flex-col md:flex-row justify-between gap-10">
           <div className="flex flex-col gap-6">
-            <Field label="Почта:" value="studsovetiu@yandex.ru" />
+            <Field label="Почта:" value="studsovet.iu@yandex.ru" />
           </div>
 
           <div className="flex flex-col gap-6 md:items-end md:text-right">
