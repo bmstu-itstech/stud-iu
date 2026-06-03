@@ -14,7 +14,7 @@ const Contact: FC<ContactProps> = ({ avatarUrl, name, role, tg_link }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-col gap-8 items-center text-center group cursor-pointer"
+      className="flex flex-col gap-5 items-center text-center group cursor-pointer"
     >
       <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full overflow-hidden border-4 border-white/10 group-hover:border-blue-500/50 transition-all duration-300">
         <Image
@@ -26,7 +26,7 @@ const Contact: FC<ContactProps> = ({ avatarUrl, name, role, tg_link }) => {
         />
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <Title
           level={3}
           className="text-white leading-tight group-hover:text-blue-400 transition-colors"
