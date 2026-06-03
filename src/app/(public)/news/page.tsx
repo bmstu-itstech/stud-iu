@@ -13,7 +13,7 @@ export default function AllNewsPage() {
       <div className="flex flex-col gap-4 mb-12">
         <Title level={1}>Новости</Title>
         <Text level={2} className="text-gray-500">
-          Все события и анонсы факультета
+          Последние события факультета ИУ
         </Text>
       </div>
 

@@ -24,11 +24,8 @@ export default function EventsPage() {
       <section className="flex flex-col lg:flex-row gap-8 lg:gap-16 w-full mx-auto px-6 2xl:px-0 max-w-primary pb-24 pt-12 overflow-hidden">
         <div className="flex flex-col gap-4 w-full lg:w-[350px] xl:w-[400px] shrink-0">
           <Title level={2} className="leading-none">
-            Будущие мероприятия
+            Предстоящие мероприятия
           </Title>
-          <Text level={2} className="text-gray-500">
-            Регистрируйтесь на наши новые мероприятия
-          </Text>
         </div>
 
         <div

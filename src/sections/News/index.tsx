@@ -30,9 +30,7 @@ const News: FC = () => {
         <div className="flex flex-col gap-6 w-full justify-start py-2">
           <Title className="leading-none">Наши новости</Title>
           <Text className="text-gray-600 text-lg sm:text-xl max-w-6xl leading-relaxed">
-            Здесь вы можете найти наши новости, а также информацию о жизни
-            факультета. Мы регулярно публикуем отчеты о мероприятиях и важные
-            анонсы.
+            Свежая информация о последних событиях в жизни факультета.
           </Text>
         </div>
 
