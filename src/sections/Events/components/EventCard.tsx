@@ -46,7 +46,7 @@ const EventCard: FC<Props> = ({ mode = "full", ...props }) => {
           height={150}
           alt={props.name}
           src={imageUrl}
-          className="rounded-2xl sm:rounded-3xl object-cover w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] my-auto mr-6 sm:mr-8 bg-white/10 shrink-0 self-center"
+          className="rounded-2xl sm:rounded-3xl object-cover w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] my-auto bg-white/10 shrink-0 self-center"
         />
       </div>
     );
