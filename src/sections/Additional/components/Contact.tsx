@@ -29,13 +29,13 @@ const Contact: FC<ContactProps> = ({ avatarUrl, name, role, tg_link }) => {
       <div className="flex flex-col gap-1.5 sm:gap-2 w-full px-2">
         <Title
           level={3}
-          className="text-white leading-tight group-hover:text-blue-400 transition-colors !text-xl sm:!text-2xl lg:!text-3xl font-bold tracking-tight break-words"
+          className="text-white leading-tight group-hover:text-blue-400 transition-colors font-bold tracking-tight break-words"
         >
           {name}
         </Title>
         <Text
           level={4}
-          className="text-white/60 font-medium !text-sm sm:!text-base lg:!text-lg break-words"
+          className="text-white/60 font-medium break-words"
         >
           {role}
         </Text>
