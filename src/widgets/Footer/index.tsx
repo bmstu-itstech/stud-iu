@@ -35,13 +35,13 @@ const Footer: FC = () => {
 
         <div className="flex flex-col md:flex-row justify-between gap-10">
           <div className="flex flex-col gap-6">
-            <Field label="Почта:" value="studsovet.iu@yandex.ru" />
+            <Field label="Почта:" value="inbox@stud-iu.ru" />
           </div>
 
           <div className="flex flex-col gap-6 md:items-end md:text-right">
             <Field
               label="Адрес:"
-              value="Бригадирский пер., 13, Москва"
+              value="Москва, Бригадирский пер., 13, корп. B7, ауд. 303"
               className="md:items-end"
             />
           </div>
@@ -92,7 +92,7 @@ const Footer: FC = () => {
               width={40}
               height={40}
             />
-            <Text level={3}>Сделано в ITS TECH</Text>
+            <Text level={3}>Сделано в ITS Tech</Text>
           </div>
         </div>
       </div>
